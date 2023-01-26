@@ -1,0 +1,135 @@
+@use '../abstracts/colors' as *;
+
+@mixin btn() {
+    .btn{
+        font-size: 1em;
+        display: flex;
+        width: fit-content;
+        background-color: $lowColor;
+        padding: 10px;
+        box-sizing: border-box;
+        text-decoration: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 5px;
+        margin-bottom: 20px;
+
+        p{
+            color: white;
+            margin-right: 10px;
+        }
+
+        .arrow{
+            width: 14px;
+            height: 14px;
+            background-image: url(../img/icon/right-arrow.png);
+            background-size: cover;
+        }
+
+        &:hover{ background: $linearGradienButton; }
+        &:active{ transform: scale(.8); }
+        
+        &:first-child{
+            background: $linearGradienButton;
+        }
+    }
+
+    @media (max-width: 768px){
+        .btn{
+            font-size: .9em;
+            
+            .arrow{
+                width: 13px;
+                height: 13px;
+            }
+        }
+    }
+    
+    @media (max-width: 576px){
+        .btn{
+            font-size: .8em;
+            
+            .arrow{
+                width: 12px;
+                height: 12px;
+            }
+        }
+    }
+    
+    @media (max-width: 390px){
+        .btn{
+            font-size: .6em;
+            
+            .arrow{
+                width: 11px;
+                height: 11px;
+            }
+        }
+    }
+}
+
+@mixin bigBtn($mt: 0px) {
+    .bigBtn{
+        font-size: 1em;
+        text-decoration: none;
+        color: $textPrimaryColor;
+        background-color: white;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: fit-content;
+        height: fit-content;
+        // margin-top: 20px;
+        margin-top: $mt;
+        transition: .2s ease-in;
+
+        p{
+            margin-right: 10px;
+        }
+
+        .arrow{         
+            width: 14px;
+            height: 14px;
+            background-image: url(../img/icon/right-arrow2.png);
+            background-size: cover;
+        }
+
+        &:hover{ transform: scale(1.05); }
+        &:active{ transform: scale(.8); }
+    }
+
+    @media (min-width: 1200px){
+
+    }
+    
+    @media (max-width: 992px){
+    
+    }
+    
+    @media (max-width: 768px){
+        .bigBtn{
+            font-size: .8em;
+            padding: 8px;
+        }
+    }
+    
+    @media (max-width: 576px){
+        .bigBtn{
+            font-size: .8em;
+            padding: 5px;
+        }
+    }
+    
+    @media (max-width: 390px){
+        .bigBtn{
+            font-size: .8em;
+            padding: 3px;
+        }
+    }
+
+    
+}

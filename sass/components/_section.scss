@@ -1,0 +1,19 @@
+@mixin section($p: 10%) {
+    width: 100%;
+    padding: $p;
+    box-sizing: border-box;
+    font-size: 1em;
+    
+    @media (max-width: 576px) {
+        padding: &p 5%;
+        font-size: .9em;
+    }
+}
+
+@mixin specialSection() {
+    width: 100%;
+    padding: 10%;
+    box-sizing: border-box;
+
+    // .container{}
+}

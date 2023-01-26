@@ -1,0 +1,865 @@
+@use '../abstracts' as *;
+
+
+@mixin sideBarBox($h: fit-content){
+    width: 100%;
+    height: $h;
+    background-color: $sideBarColor;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@mixin blogSection() {
+
+    .blogSection{
+        width: 100%;
+        padding: 10%;
+        box-sizing: border-box;
+        @include section();
+        
+        .container{
+            
+            .title{
+                @include mainTitle();
+            }
+
+            .mainContent{
+                display: flex;
+                justify-content: space-between;
+
+                .mainBlog{
+                    width: 60%;
+                    min-width: 600px;
+    
+                    .card{
+                        width: 100%;
+                        height: 500px;
+                        margin-bottom: 100px;
+                        transition: .2s ease-in;
+                        &:hover{transform: scale(1.02);}
+                        
+                        .picture{
+                            width: 100%;
+                            height: 60%;
+                            background-size: cover;
+                            background-position: center;
+
+                            &.p1{background-image: url(../img/blog/blog1.jpg);}
+                            &.p2{background-image: url(../img/blog/blog2.jpg);}
+                            &.p3{background-image: url(../img/blog/blog3.jpg);}
+                        }
+    
+                        .caption{
+                            padding: 30px;
+                            box-sizing: border-box;
+                            position: relative;
+                            box-shadow: 0px 5px 25px 0px rgba(212,212,212,0.5);
+    
+                            h3{
+                                font-size: 1.3em;
+                                margin-top: 20px;
+                            }
+    
+                            p.info{
+                                font-size: 1em;
+                                text-align: justify;
+                                margin: 20px 0;
+                            }
+    
+                            .more{
+                                display: flex;
+    
+                                .icon{
+                                    width: 18px;
+                                    height: 18px;
+                                    margin-right: 8px;
+                                    background-size: cover;
+    
+                                    &.user{
+                                        background-image: url(../img/icon/user.png);
+                                    }
+                                    &.comment{
+                                        background-image: url(../img/icon/comment.png);
+                                    }
+                                }
+    
+                                .line{
+                                    width: 2px;
+                                    height: 18px;
+                                    background-color: $lowColor;
+                                    margin: 0 8px;
+                                }
+    
+                                a{
+                                    font-size: 1em;
+                                    color: $lowColor;
+                                    text-decoration: none;
+                                }
+                            }
+
+                            .calender{
+                                background-color: $primaryColor;
+                                width: 70px;
+                                height: 70px;
+                                color: white;
+                                display: grid;
+                                place-content: center;
+                                border-radius: 5px;
+                                position: absolute;
+                                left: 30px;
+                                top: -45px;
+                            }
+                        }
+                    }
+                }
+
+                .blogHumbMenu{
+                    display: none;
+                    justify-content: center;
+                    align-items: center;
+                    position: absolute;
+                    z-index: 9999;
+                    width: 70px;
+                    height: 40px;
+                    background-color: $primaryColor;
+                    top: 0;
+                    margin: 10px 0 0 0;
+
+                    .blogCheckbox{
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        z-index: 1;
+                        opacity: 0;
+                    }
+
+                    .arrow{
+                        width: 32px;
+                        height: 32px;
+                        background-image: url(../img/icon/blogRightArrow.png);
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        transition: .2s ease-in;
+                    }
+                    
+                    .blogCheckbox:checked ~ .arrow{
+                        transform: rotate(180deg);
+                        // background-color: blue;
+                    }
+                }
+    
+                .sideBar{
+                    width: 35%;
+                    height: 1500px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    .searchBox{
+                        @include sideBarBox(100px);
+
+                        .searchInput{
+                            width: 100%;
+                            display: flex;
+
+                            input{
+                                width: 100%;
+                                height: 40px;
+                                outline: none;
+                                border-top: 1px solid $lowColor;
+                                border-left: 1px solid $lowColor;
+                                border-bottom: 1px solid $lowColor;
+                                border-right: 0;
+                                padding: 5px;
+                                box-sizing: border-box;
+                            }
+
+                            .searchIcon{
+                                width: 40px;
+                                height: 40px;
+                                background-color: $primaryColor;
+                                padding: 7px;
+                                box-sizing: border-box;
+                                .icon{
+                                    width: 100%;
+                                    height: 100%;
+                                    background-image: url(../img/icon/search.png);
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+                        }
+
+                        .searchButton{
+                            width: 100%;
+                            height: 40px;
+                            color: $primaryColor;
+                            border: 2px solid $primaryColor;
+                            background-color: transparent;
+                            cursor: pointer;
+                            background-color: white;
+                            transition: .2s ease-in;
+                            &:hover{ transform: scale(1.05); }
+                            &:active{ transform: scale(.9); }
+                        }
+                    }
+
+                    .categoryBox{
+                        @include sideBarBox(190px);
+
+                        .categorys{
+
+                            a{
+                                color: $textPrimaryColor;
+                                text-decoration: none;
+                                margin-bottom: 20px;
+                                
+                                hr{
+                                    color: $semuColor;
+                                    height: .2px;
+                                }
+                            }
+                        }
+                    }
+
+                    .postBox{
+                        @include sideBarBox(320px);
+
+                        .posts{
+                            width: 100%;
+
+                            .post{
+                                width: 100%;
+                                display: flex;
+                                align-items: center;
+                                margin-top: 20px;
+                                text-decoration: none;
+                                color: $textPrimaryColor;
+                                transition: .2s ease-in;
+                                &:hover{
+                                    transform: scale(1.01);
+                                }
+
+                                .image{
+                                    width: 50px;
+                                    height: 50px;
+                                    margin-right: 20px;
+                                    background-size: cover;
+                                
+                                    &.post1{background-image: url(../img/blog/blog4.jpg);}
+                                    &.post2{background-image: url(../img/blog/blog5.jpg);}
+                                    &.post3{background-image: url(../img/blog/blog6.jpg);}
+                                    &.post4{background-image: url(../img/blog/blog7.jpg);}
+                                }
+                            }
+                        }
+                    }
+
+                    .tagBox{
+                        @include sideBarBox(150px);
+
+                        .tags{
+                            width: 100%;
+                            height: 100%;
+                            padding: 20px 0;
+                            display: flex;
+                            flex-wrap: wrap;
+                            text-align: center;
+                            justify-content: flex-start;
+
+                            .tag{
+                                width: fit-content;
+                                height: fit-content;
+                                background-color: white;
+                                padding: 5px 15px;
+                                margin-bottom: 5px;
+                                margin-right: 5px;
+                                border: 1px solid $lowColor;
+                                text-decoration: none;
+                                color: $textPrimaryColor;
+                                transition: .2s ease;
+                                &:hover{ transform: scale(1.05); }
+                                &:active{ transform: scale(.9); }
+                            }
+                        }
+                    }
+
+                    .feedBox{
+                        @include sideBarBox(250px);
+
+                        .igFeed{
+                            width: 100%;
+                            height: 80%;
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: space-between;
+
+                            .image{
+                                width: 30%;
+                                height: 40%;
+                                background-color: white;
+                                background-size: cover;
+                                background-position: center;
+                                transition: .2s ease-in;
+                                &:hover{ transform: scale(1.05); }
+                                &:active{ transform: scale(.9); }
+
+                                &.img1{background-image: url(../img/blog/blog8.jpg);}
+                                &.img2{background-image: url(../img/blog/blog9.jpg);}
+                                &.img3{background-image: url(../img/blog/blog10.jpg);}
+                                &.img4{background-image: url(../img/blog/blog11.jpg);}
+                                &.img5{background-image: url(../img/blog/blog12.jpg);}
+                                &.img6{background-image: url(../img/blog/blog13.jpg);}
+                            }
+                        }
+                    }
+
+                    .subscribeBox{
+                        @include sideBarBox(200px);
+
+                        input{
+                            width: 100%;
+                            height: 40px;
+                            outline: none;
+                            padding: 5px;
+                            box-sizing: border-box;
+                        }
+
+                        .subscribeBtn{
+                            width: 100%;
+                            height: 40px;
+                            color: $primaryColor;
+                            border: 2px solid $primaryColor;
+                            background-color: transparent;
+                            cursor: pointer;
+                            background-color: white;
+                            transition: .2s ease-in;
+                            &:hover{ transform: scale(1.05); }
+                            &:active{ transform: scale(.9); }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1200px){
+        .blogSection{
+            .container{
+                .mainContent{
+                    .mainBlog{
+                        min-width: 400px;
+        
+                        .card{
+                            .caption{
+                                padding: 30px;
+                                box-sizing: border-box;
+                                position: relative;
+                                box-shadow: 0px 5px 25px 0px rgba(212,212,212,0.5);
+        
+                                h3{
+                                    font-size: 1.3em;
+                                }
+                                
+                                p.info{
+                                    font-size: .95em;
+                                }
+                            }
+                        }
+                    }
+                    
+                    .sideBar{
+                        .tagBox{
+                            .tags{
+                                .tag{
+                                    padding: 5px 10px;
+                                }
+                            }
+                        }
+
+                        .subscribeBox{
+                            @include sideBarBox(160px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    @media (max-width: 992px){
+        .blogSection{
+            .container{
+                .mainContent{
+                    .mainBlog{
+                        min-width: 300px;
+
+                        .card{
+                            height: 400px;
+                            margin-bottom: 70px;
+
+                            .picture{
+                                height: 50%;
+                            }
+        
+                            .caption{
+                                padding: 25px;
+        
+                                p.info{
+                                    margin: 15px 0;
+                                }
+        
+                                .more{
+                                    .icon{
+                                        width: 15px;
+                                        height: 15px;
+                                    }
+                                }
+    
+                                .calender{
+                                    width: 65px;
+                                    height: 65px;
+                                    left: 25px;
+                                    top: -45px;
+
+                                    h2{font-size: 1.5em;}
+                                    p{font-size: .9em}
+                                }
+                            }
+                        }
+                    }
+        
+                    .sideBar{
+                        width: 30%;
+                        height: 1600px;
+    
+                        .categoryBox{
+                            a{
+                                font-size: .9em;
+                            }
+                        }
+    
+                        .postBox{
+                            .posts{
+                                .post{
+                                    h4{font-size: 1.1em;}
+                                    p{font-size: .9em}
+                                }
+                            }
+                        }
+
+                        .tagBox{
+                            .tags{
+                                .tag{
+                                    font-size: .9em;
+                                    padding: 5px 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    @media (max-width: 768px){
+        .blogSection{
+            padding: 5%;
+
+            .container{
+                .mainContent{
+                    flex-direction: column-reverse;
+                    position: relative;
+                    overflow: hidden;
+                    
+                    .mainBlog{
+                        width: 100%;
+        
+                        .card{
+                            width: 100%;
+                            height: 500px;
+                            
+                            .picture{
+                                width: 100%;
+                                height: 60%;
+                            }
+        
+                            .caption{        
+                                h3{
+                                    font-size: 1.3em;
+                                }
+        
+                                p.info{
+                                    font-size: 1em;
+                                }
+        
+                                .more{        
+                                    .icon{
+                                        width: 18px;
+                                        height: 18px;
+                                        margin-right: 8px;
+                                    }
+        
+                                    .line{
+                                        width: 2px;
+                                        height: 18px;
+                                        margin: 0 8px;
+                                    }
+        
+                                    a{ font-size: 1em; }
+                                }
+    
+                                .calender{
+                                    width: 70px;
+                                    height: 70px;
+                                    border-radius: 5px;
+                                    left: 30px;
+                                    top: -45px;
+                                }
+                            }
+                        }
+                    }
+        
+                    .blogHumbMenu{
+                        display: flex;
+                    }
+
+                    .sideBar{
+                        width: 80%;
+                        height: 1000px;
+                        position: absolute;
+                        top: 0;
+                        background-color: white;
+                        box-shadow: 10px 0 10px rgba(197, 197, 197, 0.651);
+                        transform: translateX(-1000px);
+                        transition: .5s ease-in;
+
+                        .searchBox{
+                            @include sideBarBox(80px);
+                            flex-direction: row;
+                            justify-content: flex-end;
+                            width: 92%;
+
+                            .searchInput{width: 80%;}
+    
+                            .searchButton{display: none;}
+                        }
+    
+                        .categoryBox{
+                            @include sideBarBox(120px);
+                            width: 92%;
+
+                            
+                            
+                            hr{display: none;}
+                            
+                            .categorys{
+                                width: 100%;
+                                display: flex;
+                                flex-wrap: wrap;
+                                justify-content: space-between;
+
+                                a{
+                                    color: $textPrimaryColor;
+                                    text-decoration: none;
+                                    width: 30%;
+
+                                    hr{
+                                        color: $semuColor;
+                                        height: .2px;
+                                    }
+                                }
+                            }
+                        }
+    
+                        .postBox{
+                            @include sideBarBox(240px);
+                            width: 92%;
+                            
+                            .posts{
+                                display: flex;
+                                flex-direction: row;
+                                flex-wrap: wrap;
+                                justify-content: space-between;
+                                
+                                .post{
+                                    width: 48%;
+                                    
+                                    .info{
+                                        h4{font-size: 1em;}
+                                        p{font-size: .7em}
+                                    }
+                                }
+                            }
+                        }
+    
+                        .tagBox{
+                            @include sideBarBox(150px);
+                            width: 92%;
+    
+                            .tags{
+                                width: 100%;
+                                height: 100%;
+                                padding: 10px 0;
+                                display: flex;
+    
+                                .tag{
+                                    font-size: .8em;
+                                    padding: 2.5px 10px;
+                                }
+                            }
+                        }
+    
+                        .feedBox{
+                            @include sideBarBox(250px);
+                            width: 92%;
+
+                            .igFeed{
+                                .image{
+                                    width: 20%;
+                                    margin: 0 5%;
+                                }
+                            }
+                        }
+    
+                        .subscribeBox{
+                            @include sideBarBox(200px);
+                            width: 92%;
+                        }
+                    }
+
+                    .blogSlide{transform: translateX(0);}
+                }
+            }
+        }
+    }
+    
+    @media (max-width: 576px){
+        .blogSection{
+            .container{
+                .mainContent{
+                    flex-direction: column-reverse;
+                    position: relative;
+                    overflow: hidden;
+                    
+                    .mainBlog{
+                        .card{
+                            height: 500px;
+                            margin-bottom: 30px;
+                            
+                            .picture{
+                                height: 50%;
+                            }
+                        }
+                    }
+        
+                    .blogHumbMenu{
+                        width: 40px;
+                        height: 35px;
+
+                        .arrow{
+                            width: 30px;
+                            height: 30px;
+                        }
+                    }
+
+                    .sideBar{
+                        .searchBox{
+                            @include sideBarBox(80px);
+                            flex-direction: row;
+                            justify-content: flex-end;
+                            width: 90%;
+
+                            .searchInput{
+                                width: 80%;
+                                height: 35px;
+                                input{
+                                    height: 35px;
+                                }
+                                .searchIcon{
+                                    height: 35px;
+                                }
+                            }
+                        }
+    
+                        .categoryBox{
+                            @include sideBarBox(120px);
+                            width: 90%;
+                        }
+    
+                        .postBox{
+                            @include sideBarBox(250px);
+                            width: 90%;
+                            
+                            .posts{
+                                display: flex;
+                                flex-direction: row;
+                                flex-wrap: wrap;
+                                justify-content: space-between;
+                                
+                                .post{
+                                    width: 48%;
+                                    
+                                    .info{
+                                        h4{font-size: .9em;}
+                                        p{font-size: .6em}
+                                    }
+                                }
+                            }
+                        }
+    
+                        .tagBox{
+                            @include sideBarBox(150px);
+                            width: 90%;
+                        }
+    
+                        .feedBox{
+                            @include sideBarBox(250px);
+                            width: 90%;
+
+                            .igFeed{
+                                .image{
+                                    width: 20%;
+                                    margin: 0 5%;
+                                }
+                            }
+                        }
+    
+                        .subscribeBox{
+                            @include sideBarBox(200px);
+                            width: 90%;
+
+                            input{height: 35px;}
+                            .subscribeBtn{height: 35px;}
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    @media (max-width: 390px){
+        .blogSection{
+            .container{
+                .mainContent{
+                    .mainBlog{
+                        width: 100%;
+                        
+                        .card{
+                            width: 100%;
+                            height: 300px;
+                            margin-bottom: 70px;
+                            
+                            .picture{
+                                width: 100%;
+                                height: 45%;
+                            }
+        
+                            .caption{        
+                                h3{
+                                    font-size: 1.2em;
+                                }
+        
+                                p.info{
+                                    font-size: .8em;
+                                }
+        
+                                .more{        
+                                    .icon{
+                                        width: 14px;
+                                        height: 14px;
+                                    }
+        
+                                    .line{
+                                        width: 2px;
+                                        height: 18px;
+                                        margin: 0 8px;
+                                    }
+        
+                                    a{ font-size: .8em; }
+                                }
+    
+                                .calender{
+                                    width: 55px;
+                                    height: 55px;
+                                    border-radius: 5px;
+                                    left: 25px;
+                                    top: -30px;
+                                }
+                            }
+                        }
+                    }
+
+        
+                    .blogHumbMenu{
+                        width: 40px;
+                        height: 35px;
+
+                        .arrow{
+                            width: 30px;
+                            height: 30px;
+                        }
+                    }
+
+                    .sideBar{
+                        .searchBox{
+                            @include sideBarBox(80px);
+                            flex-direction: row;
+                            justify-content: flex-end;
+                            width: 90%;
+                        }
+    
+                        .categoryBox{
+                            @include sideBarBox(120px);
+                            width: 90%;
+
+                            h3{font-size: 1.1em;}
+                            .categorys{
+                                a{width: 40%}
+                            }
+                        }
+    
+                        .postBox{
+                            @include sideBarBox(250px);
+                            width: 90%;
+                            
+                            .posts{
+                                display: flex;
+                                flex-direction: row;
+                                flex-wrap: wrap;
+                                justify-content: space-between;
+                                
+                                .post{
+                                    width: 48%;
+                                    display: flex;
+                                    flex-direction: column;
+
+                                    .info{
+                                        h4{font-size: .9em;}
+                                        p{font-size: .6em}
+                                    }
+                                }
+                            }
+                        }
+    
+                        .tagBox{
+                            @include sideBarBox(150px);
+                            width: 90%;
+                        }
+    
+                        .feedBox{
+                            @include sideBarBox(250px);
+                            width: 90%;
+                        }
+    
+                        .subscribeBox{
+                            @include sideBarBox(200px);
+                            width: 90%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

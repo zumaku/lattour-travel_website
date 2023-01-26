@@ -1,0 +1,193 @@
+@use '../abstracts' as *;
+
+@mixin aboutSection() {
+
+    .aboutSection{
+        // width: 100%;
+        // height: 100vh;
+        background-color: white;
+        @include section();
+
+        .container{
+            display: flex;
+            justify-content: space-between;
+            
+            .aboutLeft{
+                width: 45%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                @include downTitle(20px);
+                // margin-bottom: 20px;
+
+
+                .info{
+                    margin-bottom: 20px;
+                }
+
+                .tombols{
+                    display: flex;
+                    flex-direction: column;
+
+                    .btn{
+                        transition: .2s ease-in all;
+                        &:hover{ transform: scale(1.05); }
+                        &:active{ transform: scale(.9); }
+                    }
+                    @include btn();
+                }
+            }
+
+            .aboutRight{
+                width: 45%;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                .img{
+                    width: 500px;
+                    height: 300px;
+                    background-color: $primaryColor;
+                    animation: about 15s linear infinite;
+                    background-size: cover;
+                    @keyframes about {
+                        0%{ background-image: url(../img/about/about1.png); }
+                        25%{ background-image: url(../img/about/about1.png); }
+                        26%{ background-image: url(../img/about/about2.png); }
+                        50%{ background-image: url(../img/about/about2.png); }
+                        51%{ background-image: url(../img/about/about3.png); }
+                        75%{ background-image: url(../img/about/about3.png); }
+                        76%{ background-image: url(../img/about/about4.png); }
+                        100%{ background-image: url(../img/about/about4.png); }
+                    }
+                }
+            }
+        }
+    }
+
+
+    // MEDIA QUERY
+    @media (min-width: 1200px){
+        
+    }
+    
+    @media (max-width: 992px){
+    }
+    
+    @media (max-width: 768px){
+        .aboutSection{
+            p, a{
+                font-size: .9em;
+            }
+
+            .container{
+                width: 100%;
+                flex-direction: column-reverse;
+                justify-content: center;
+                align-items: center;
+                // height: fit-content;
+                margin-bottom: 20px;
+    
+                .aboutLeft{
+                    width: 100%;
+
+                    
+                    .info{
+                        text-align: justify;
+                    }
+    
+                    .tombols{
+                        flex-direction: row;
+                        width: 100%;
+                        justify-content: space-around;
+                        // margin-bottom: 20vh;
+                    }
+                }
+    
+                .aboutRight{
+                    width: 100%;
+                    overflow: visible;
+                    
+                    img{
+                        max-width: 100%;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+    
+    @media (max-width: 576px){
+        .aboutSection{
+    
+            .container{    
+                .aboutLeft{
+                    width: 100%;
+    
+                    .tombols{
+    
+                        .btn{
+                            width: 30%;
+                            max-height: 80px;
+            
+                            .arrow{
+                                max-width: 10px;
+                                max-height: 10px;
+                            }
+                        }
+                    }
+                }
+    
+                .aboutRight{
+                    width: 100%;
+                    overflow: visible;
+                    
+                    img{
+                        max-width: 100%;
+                        // margin-top: 100px;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+    
+    @media (max-width: 390px){
+        .aboutSection{
+            .container{    
+                .aboutLeft{
+                    .tombols{
+                        flex-direction: row;
+                        width: 100%;
+                        justify-content: space-around;
+    
+                        .btn{
+                            // max-width: 40%;
+                            width: 30%;
+                            max-height: 40px;
+            
+                            .arrow{
+                                max-width: 7px;
+                                max-height: 7px;
+                            }
+                        }
+                    }
+                }
+                
+                .aboutRight{
+                    width: 100%;
+                    height: 40%;
+                    overflow: visible;
+                    // background-color: red;
+    
+                    img{
+                        max-width: 100%;
+                        margin-top: 100px;
+                    }
+                }
+            }
+        }
+    }
+
+
+    // END MIXIN
+}
